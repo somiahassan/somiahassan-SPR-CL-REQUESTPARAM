@@ -24,6 +24,7 @@ public class SearchController {
     public String getSearchTerm(@RequestParam String term){
         return term;
     }
+
     /**
      * Here's an example of how to extract multiple path params from the HTTP quest. Notice how the terms are defined
      * as part of the endpoint's signature - this allows Spring to identify two distinct endpoints that both use a
@@ -33,20 +34,22 @@ public class SearchController {
     public String[] getSearchTermAndPage(@RequestParam String term, @RequestParam String format){
         return new String[]{term, format};
     }
+
     /**
      * TODO: extract the numeric 'amount' query parameter from a request, such as GET localhost:9000/cats?amount=50,
      * returning 50.
      */
     @GetMapping(value = "cats", params = {"amount"})
-    public int getSearchFormat(){
-        return 0;
+    public int getSearchFormat(@RequestParam int amount){
+        return amount;
     }
+
     /**
      * TODO: extract the String 'format' and 'orderBy' query parameters from a request, such as
      * GET localhost:9000/cats?format=gif&orderby=new, returning a String array such as {"gif", "new"}
      */
     @GetMapping(value = "cats", params = {"format", "orderBy"})
-    public String[] getSearchFormatAndAmount(){
-        return null;
+    public String[] getSearchFormatAndAmount(@RequestParam String format, @RequestParam String orderBy){
+        return new String[]{format, orderBy};
     }
 }
